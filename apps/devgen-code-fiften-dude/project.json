@@ -1,0 +1,95 @@
+{
+  "name": "devgen-code-fiften-dude",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/devgen-code-fiften-dude/src",
+  "prefix": "devgen-code-fiften-dude",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/devgen-code-fiften-dude",
+        "index": "apps/devgen-code-fiften-dude/src/index.html",
+        "main": "apps/devgen-code-fiften-dude/src/main.ts",
+        "polyfills": "apps/devgen-code-fiften-dude/src/polyfills.ts",
+        "tsConfig": "apps/devgen-code-fiften-dude/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/devgen-code-fiften-dude/src/favicon.ico",
+          "apps/devgen-code-fiften-dude/src/assets"
+        ],
+        "styles": ["apps/devgen-code-fiften-dude/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/devgen-code-fiften-dude/src/environments/environment.ts",
+              "with": "apps/devgen-code-fiften-dude/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "devgen-code-fiften-dude:build:production"
+        },
+        "development": {
+          "browserTarget": "devgen-code-fiften-dude:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "devgen-code-fiften-dude:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/devgen-code-fiften-dude/src/**/*.ts",
+          "apps/devgen-code-fiften-dude/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/devgen-code-fiften-dude"],
+      "options": {
+        "jestConfig": "apps/devgen-code-fiften-dude/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
